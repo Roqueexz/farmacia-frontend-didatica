@@ -1,4 +1,4 @@
-﻿import type { ProdutoDTO } from "../interface/ProdutoDTO";
+import type { ProdutoDTO } from "../interface/ProdutoDTO";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3333";
 
@@ -6,7 +6,7 @@ class ProdutoRequests {
   private url: string;
 
   constructor() {
-    this.url = ${API_URL}/produtos;
+    this.url = `${API_URL}/produtos`;
   }
 
   async listar(): Promise<ProdutoDTO[]> {
@@ -29,7 +29,7 @@ class ProdutoRequests {
 
   async listarAlertas(): Promise<ProdutoDTO[]> {
     try {
-      const res = await fetch(${this.url}/alerta, {
+      const res = await fetch(`${this.url}/alerta`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
       });
@@ -82,7 +82,7 @@ class ProdutoRequests {
     }>
   ): Promise<{ mensagem: string }> {
     try {
-      const res = await fetch(${this.url}/, {
+      const res = await fetch(`${this.url}/${idProduto}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(dados),
@@ -95,14 +95,14 @@ class ProdutoRequests {
 
       return data;
     } catch (error) {
-      console.error([ProdutoRequests] Erro ao atualizar :, error);
+      console.error(`[ProdutoRequests] Erro ao atualizar ${idProduto}:`, error);
       throw error;
     }
   }
 
   async remover(idProduto: number): Promise<{ mensagem: string }> {
     try {
-      const res = await fetch(${this.url}/, {
+      const res = await fetch(`${this.url}/${idProduto}`, {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
       });
@@ -114,7 +114,7 @@ class ProdutoRequests {
 
       return data;
     } catch (error) {
-      console.error([ProdutoRequests] Erro ao remover :, error);
+      console.error(`[ProdutoRequests] Erro ao remover ${idProduto}:`, error);
       throw error;
     }
   }

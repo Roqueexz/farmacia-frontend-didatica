@@ -1,4 +1,4 @@
-﻿import type { ClienteDTO } from "../interface/ClienteDTO";
+import type { ClienteDTO } from "../interface/ClienteDTO";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3333";
 
@@ -6,7 +6,7 @@ class ClienteRequests {
   private url: string;
 
   constructor() {
-    this.url = ${API_URL}/clientes;
+    this.url = `${API_URL}/clientes`;
   }
 
   async listar(): Promise<ClienteDTO[]> {

@@ -1,4 +1,4 @@
-﻿import type { PedidoDTO, ItemPedidoDTO } from "../interface/PedidoDTO";
+import type { PedidoDTO, ItemPedidoDTO } from "../interface/PedidoDTO";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3333";
 
@@ -6,7 +6,7 @@ class PedidoRequests {
   private url: string;
 
   constructor() {
-    this.url = ${API_URL}/pedidos;
+    this.url = `${API_URL}/pedidos`;
   }
 
   async listar(): Promise<PedidoDTO[]> {
@@ -32,7 +32,7 @@ class PedidoRequests {
     itens: ItemPedidoDTO[];
   }> {
     try {
-      const res = await fetch(${this.url}/, {
+      const res = await fetch(`${this.url}/${idVenda}`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
       });
@@ -44,7 +44,7 @@ class PedidoRequests {
 
       return data;
     } catch (error) {
-      console.error([PedidoRequests] Erro ao obter pedido :, error);
+      console.error(`[PedidoRequests] Erro ao obter pedido ${idVenda}:`, error);
       throw error;
     }
   }
@@ -75,7 +75,7 @@ class PedidoRequests {
 
   async listarItens(idVenda: number): Promise<ItemPedidoDTO[]> {
     try {
-      const res = await fetch(${this.url}//itens, {
+      const res = await fetch(`${this.url}/${idVenda}/itens`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
       });
@@ -86,14 +86,14 @@ class PedidoRequests {
 
       return await res.json();
     } catch (error) {
-      console.error([PedidoRequests] Erro ao listar itens de :, error);
+      console.error(`[PedidoRequests] Erro ao listar itens de ${idVenda}:`, error);
       throw error;
     }
   }
 
   async removerItem(idVenda: number, idProduto: number): Promise<{ mensagem: string }> {
     try {
-      const res = await fetch(${API_URL}/itens//, {
+      const res = await fetch(`${API_URL}/itens/${idVenda}/${idProduto}`, {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
       });
@@ -105,7 +105,7 @@ class PedidoRequests {
 
       return data;
     } catch (error) {
-      console.error([PedidoRequests] Erro ao remover item da venda :, error);
+      console.error(`[PedidoRequests] Erro ao remover item da venda ${idVenda}:`, error);
       throw error;
     }
   }
