@@ -161,11 +161,14 @@ export default function FormNovoPedido({
                 required
               >
                 <option value="">-- Selecione o Cliente --</option>
-                {clientes.map((c) => (
-                  <option key={c.id_cliente} value={c.id_cliente}>
-                    {c.nome} (CPF: {c.cpf})
-                  </option>
-                ))}
+                {clientes.map((c) => {
+                  const id = c.idCliente ?? c.id_cliente;
+                  return (
+                    <option key={id} value={id}>
+                      {c.nome} (CPF: {c.cpf})
+                    </option>
+                  );
+                })}
               </select>
             </div>
 

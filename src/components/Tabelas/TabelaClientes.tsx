@@ -1,4 +1,4 @@
-﻿import type { ClienteDTO } from "../../interface/ClienteDTO";
+import type { ClienteDTO } from "../../interface/ClienteDTO";
 
 interface Props {
   clientes: ClienteDTO[];
@@ -33,13 +33,16 @@ export default function TabelaClientes({ clientes, carregando, onNovoCliente }: 
               </tr>
             </thead>
             <tbody>
-              {clientes.map((c) => (
-                <tr key={c.id_cliente}>
-                  <td><strong>#{c.id_cliente}</strong></td>
-                  <td>{c.nome}</td>
-                  <td><code>{c.cpf}</code></td>
-                </tr>
-              ))}
+              {clientes.map((c) => {
+                const id = c.idCliente ?? c.id_cliente;
+                return (
+                  <tr key={id}>
+                    <td><strong>#{id}</strong></td>
+                    <td>{c.nome}</td>
+                    <td><code>{c.cpf}</code></td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
